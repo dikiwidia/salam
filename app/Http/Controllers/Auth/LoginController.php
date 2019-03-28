@@ -36,7 +36,7 @@ class LoginController extends Controller
         } else {        
             $data = Pengguna::where('nickname',$u)->where('status','A')->first();
         }
-        if(count($data) > 0){
+        if($data->count() > 0){
             if (Hash::check($p, $data->passcode)) {
                 // The passwords match...
                 Session::put('id',$data->id);
