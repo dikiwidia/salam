@@ -6,12 +6,21 @@ use Closure;
 
 class HttpsProtocol 
 {
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
     public function handle($request, Closure $next)
     {
-            if (!$request->secure() && env('APP_ENV') === 'production') {
-                return redirect()->secure($request->getRequestUri());
-            }
+        $request->setTrustedProxies( [$request->getClientIp()] );
+        if (!$request->secure()) {
+            return redirect()->secure($request->getRequestUri());
+        }
 
-            return $next($request); 
+        return $next($request); 
     }
 }
+
