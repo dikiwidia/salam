@@ -30,7 +30,7 @@ $ php artisan migrate --seed
 ```
 
 ## Akses dengan HTTPS
-Secara bawaan, aplikasi ini berjalan pada protokol HTTP, Untuk mengubah akses menjadi HTTPS, pertama-tama buka berkas ```app\Http\Middleware\HttpsProtocol.php``` lalu hilangkan tanda komentar ```//``` pada ```\App\Http\Middleware\HttpsProtocol::class``` menjadi seperti dibawah ini.
+Secara bawaan, aplikasi ini berjalan pada protokol HTTP, Untuk mengubah akses menjadi HTTPS, pertama-tama buka berkas ```app\Http\Kernel.php``` lalu hilangkan tanda komentar ```//``` pada ```\App\Http\Middleware\HttpsProtocol::class``` menjadi seperti dibawah ini.
 ```php
 <?php
 
@@ -51,6 +51,9 @@ class Kernel extends HttpKernel
     //== ...
 ```
 Untuk akses HTTP, Anda tidak perlu melakukan hal ini.
+
+## Tampilan
+![alt text](https://github.com/dikiwidia/salam/blob/master/screenshot.png)
 
 ## Lisensi
 MIT
