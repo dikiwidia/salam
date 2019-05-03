@@ -44,7 +44,7 @@ class RekapHadirController extends Controller
             return redirect($this->dasbor)->with('warning','Tidak ada Tahun Akademik yang AKTIF'); 
         }
         $v = Kelas::where('id',$kelas)->first();
-        if(count($v) == 0){
+        if($v->count() == 0){
             return redirect($this->dasbor)->with('warning','Kelas tidak tersedia'); 
         }
         $no = 1;
@@ -60,7 +60,7 @@ class RekapHadirController extends Controller
         $no = 1;
         $d = Jadwal::where('id',$jadwal)->where('kelas',$kelas)->where('tahun_akademik',$this->ta[0]->id)->first();
 
-        if(count($d) == 0){
+        if($d->count() == 0){
             return redirect($this->modulURL)->with('warning','Ups terjadi kesalahan');
         }
         $rk = RegistrasiKelas::where('kelas',$d->kelas)->where('tahun_akademik',$this->ta[0]->id)->get();
@@ -86,10 +86,11 @@ class RekapHadirController extends Controller
     public function getAbsensi($id,$jadwal){
         $pt = Pertemuan::get();
         foreach($pt as $pt){
-            $absen = Absensi::where('nama',$id)->where('jadwal',$jadwal)->where('pertemuan',$pt->id)->first();    
+            $absen = Absensi::where('nama',$id)->where('jadwal',$jadwal)->where('pertemuan',$pt->id)->first();
+            //dd($absen);    
             $result[$pt->id] = [
                 'pt' => $pt->id,
-                'absen' => count($absen) == 0 ? 'NR' : $absen->absen,
+                'absen' => $absen == NULL ? 'NR':$absen->absen,
             ];
         }
         return $result;
