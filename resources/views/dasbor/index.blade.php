@@ -124,8 +124,8 @@
                                 <td>{{$temp->getJadwal->getKelas->nama}}</td>
                                 <td>{{$temp->getJadwal->getKelas->jenjang}}</td>
                                 <td>{{$temp->getJadwal->getMapel->sks}}</td>
-                                <td>{{\Carbon\Carbon::parse($temp->masuk_kelas)->format('H:i')}}</td>
-                                <td>@if($temp->keluar_kelas == NULL) <span class="label label-primary">Sedang Mengajar ...</span> @else {{\Carbon\Carbon::parse($temp->keluar_kelas)->format('H:i')}} @endif</td>
+                                <td>{{\Carbon\Carbon::parse($temp->getJadwal->mulai)->format('H:i')}}</td>
+                                <td>@if($temp->getJadwal->selesai == NULL) <span class="label label-primary">Sedang Mengajar ...</span> @else {{\Carbon\Carbon::parse($temp->getJadwal->selesai)->format('H:i')}} @endif</td>
                             </tr>
                             @endforeach
                             @endif

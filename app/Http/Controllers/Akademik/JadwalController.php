@@ -58,7 +58,7 @@ class JadwalController extends Controller
         }
         
         //Logika
-        $cekJadwal = Jadwal::where('kelas',$kelas)->where('jam_ke',$r->jam_ke)->where('hari',$r->hari)->where('tahun_akademik',$this->ta[0]->id)->get();
+        $cekJadwal = Jadwal::where('kelas',$kelas)->where('jam_ke',$r->jam_ke)->where('hari',$r->hari)->get();
         if($cekJadwal->count() == 0){
             // dd($r->all());
             $fill = [
@@ -72,7 +72,6 @@ class JadwalController extends Controller
                 'tahun_akademik' => $this->ta[0]->id,
             ];
             Jadwal::create($fill);
-			//dd($fill);
         }
         return redirect(route('akademik.jd.kelas',$kelas));
     }

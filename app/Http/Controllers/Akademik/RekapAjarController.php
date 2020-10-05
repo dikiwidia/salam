@@ -56,7 +56,7 @@ class RekapAjarController extends Controller
     public function show($kelas,$jadwal)
     {
         $d = Jadwal::where('kelas',$kelas)->first();
-        if($d->count() == 0){
+        if(count($d) == 0){
             return redirect($this->modulURL)->with('warning','Ups belum dilakukan KBM pada Mata Pelajaran ini');
         }
         $data['mapel'] = $d->getMapel->nama_idn;
@@ -80,7 +80,7 @@ class RekapAjarController extends Controller
             return redirect(route('akademik.rm'))->with('warning', 'Data Tidak Tersedia');
         }
         $hps_data = $patch->first();
-        if($hps_data->count() > 0){
+        if(count($hps_data) > 0){
             Absensi::where('jadwal',$hps_data->jadwal)->where('pertemuan',$hps_data->pertemuan)->delete();
         }
         $patch->delete();

@@ -178,12 +178,12 @@ class KbmController extends Controller
     {
         $no = 1;
         $a = Pengguna::where('id',Session::get('id'))->first();
-        $d = Jadwal::where('id',$jadwal)->where('guru',$a->guru)->where('tahun_akademik',$this->ta[0]->id)->first();
+        $d = Jadwal::where('id',$jadwal)->where('guru',$a->guru)->first();
 
         if(count($d) == 0){
             return redirect(route('rekap.index'))->with('warning','Ups terjadi kesalahan');
         }
-        $rk = RegistrasiKelas::where('kelas',$d->kelas)->where('tahun_akademik',$this->ta[0]->id)->get();
+        $rk = RegistrasiKelas::where('kelas',$d->kelas)->get();
         if($rk->count() == 0){
             return redirect(route('rekap.index'))->with('warning','Belum ada santri yang didaftarkan');
         }

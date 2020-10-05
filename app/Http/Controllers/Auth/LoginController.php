@@ -31,14 +31,12 @@ class LoginController extends Controller
         $u = $r->nickname;
         $l = $r->role;
         $p = $r->passcode;
-        if($l == 'A'){
-            $data = Admin::where('nickname',$u)->where('status','A');
-        } else {
-            $data = Pengguna::where('nickname',$u)->where('status','A');
+        if($l == 'A'){        
+            $data = Admin::where('nickname',$u)->where('status','A')->first();
+        } else {        
+            $data = Pengguna::where('nickname',$u)->where('status','A')->first();
         }
-        //dd($data->count());
-        if($data->count() == 1){
-            $data = $data->first();
+        if($data->count() > 0){
             if (Hash::check($p, $data->passcode)) {
                 // The passwords match...
                 Session::put('id',$data->id);
