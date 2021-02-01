@@ -60,7 +60,7 @@ class RekapHadirController extends Controller
         $no = 1;
         $d = Jadwal::where('id',$jadwal)->where('kelas',$kelas)->where('tahun_akademik',$this->ta[0]->id)->first();
 
-        if($d->count() == 0){
+        if($d == null){
             return redirect($this->modulURL)->with('warning','Ups terjadi kesalahan');
         }
         $rk = RegistrasiKelas::where('kelas',$d->kelas)->get();
