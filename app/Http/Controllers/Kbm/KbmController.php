@@ -51,7 +51,7 @@ class KbmController extends Controller
     {
         $a = Pengguna::where('id',Session::get('id'))->first();
         $d = Jadwal::where('id',$jadwal)->where('guru',$a->guru)->first();
-        if(count($d) == 0){
+        if($d == null){
             return redirect($this->modulURL)->with('warning','Ups terjadi kesalahan');
         }
         $data['mapel'] = $d->getMapel->nama_idn;
@@ -123,7 +123,7 @@ class KbmController extends Controller
             return redirect(route('mengajar.begin',$jadwal))->with('warning','Untuk melihat Absensi yang sudah di Input, silahkan kunjungi halaman "Rekapitulasi Absen"');
         }
         $ceJdw = Jadwal::where('id',$jadwal)->where('guru',$a->guru)->first();
-        if(count($ceJdw) == 0){
+        if($ceJdw == null){
             return redirect(route('mengajar.begin',$jadwal))->with('warning','Ups ! Terjadi Kesalahan"');
         }
         $data['mapel'] = $ceJdw->getMapel->nama_idn;
@@ -180,7 +180,7 @@ class KbmController extends Controller
         $a = Pengguna::where('id',Session::get('id'))->first();
         $d = Jadwal::where('id',$jadwal)->where('guru',$a->guru)->first();
 
-        if(count($d) == 0){
+        if($d == null){
             return redirect(route('rekap.index'))->with('warning','Ups terjadi kesalahan');
         }
         $rk = RegistrasiKelas::where('kelas',$d->kelas)->get();
@@ -208,7 +208,7 @@ class KbmController extends Controller
             $absen = Absensi::where('nama',$id)->where('jadwal',$jadwal)->where('pertemuan',$pt->id)->first();    
             $result[$pt->id] = [
                 'pt' => $pt->id,
-                'absen' => count($absen) == 0 ? 'NR' : $absen->absen,
+                'absen' => $absen == null ? 'NR' : $absen->absen,
             ];
         }
         return $result;

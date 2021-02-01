@@ -56,7 +56,7 @@ class RekapAjarController extends Controller
     public function show($kelas,$jadwal)
     {
         $d = Jadwal::where('kelas',$kelas)->first();
-        if(count($d) == 0){
+        if($d == null){
             return redirect($this->modulURL)->with('warning','Ups belum dilakukan KBM pada Mata Pelajaran ini');
         }
         $data['mapel'] = $d->getMapel->nama_idn;
