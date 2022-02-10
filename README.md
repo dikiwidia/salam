@@ -1,5 +1,8 @@
+# DEPRECATED
+SALAM sudah tidak lagi dikembagkan & kemungkinan mendapat banyak bug dan tidak kompatibel untuk versi PHP > 7 .
+
 # SALAM
-SALAM atau Sistem Akademik La Tansa Mashiro adalah salah satu aplikasi yang digunakan untuk menunjang kegiatan belajar / mengajar. Terdapat fitur absensi santri dan guru di dalamnya.
+SALAM atau Sistem Akademik La Tansa Mashiro adalah salah satu aplikasi yang digunakan untuk menunjang kegiatan belajar / mengajar. Terdapat fitur absensi santri dan guru di dalamnya. 
 
 ## Kebutuhan Sistem
 Mengacu pada aturan dokumentasi [laravel-5.2]
